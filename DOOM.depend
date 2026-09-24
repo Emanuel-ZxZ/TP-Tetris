@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1790203311 source:c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\tablero.c
+	<stdio.h>
+	"Tablero.h"
+	"matriz_dinamica.h"
+
+1790201108 c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\tablero.h
+
+1790205118 source:c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\main.c
+	<stdio.h>
+	"Tablero.h"
+
+1790201023 source:c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\matriz_dinamica.c
+	<stdlib.h>
+	"matriz_dinamica.h"
+
+1790200974 c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\matriz_dinamica.h
+
