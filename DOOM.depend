@@ -16,3 +16,28 @@
 
 1790200974 c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\matriz_dinamica.h
 
+1791853497 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\main.c
+	<stdio.h>
+	"Tablero.h"
+	"pieza.h"
+
+1790729995 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.h
+
+1790729995 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\matriz_dinamica.c
+	<stdlib.h>
+	"matriz_dinamica.h"
+
+1790729995 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\matriz_dinamica.h
+
+1791853745 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.c
+	<stdio.h>
+	<stdlib.h>
+	"pieza.h"
+
+1790729995 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
+	<stdio.h>
+	"Tablero.h"
+	"matriz_dinamica.h"
+
+1791853829 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.h
+

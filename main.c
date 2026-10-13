@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Tablero.h"
-
+#include "pieza.h"
 int main()
 {
     int f = 0;
