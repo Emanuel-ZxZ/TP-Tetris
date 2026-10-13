@@ -12,4 +12,8 @@ typedef struct
 void pieza_aleatoria(pieza *p, size_t columnas_tablero);// funcion para generar piezas aleatorias
 
 void obtener_matriz_pieza(int tipo, int forma[][4]);// funcion para cargar los valores de la matriz forma
+
+void imprimir_pieza (pieza*p);
+void imprimir_pieza (pieza*p);
+
 #endif // PIEZA_H_INCLUDED
