@@ -1,10 +1,16 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "Tablero.h"
 #include "pieza.h"
 int main()
 {
     int f = 0;
     int c = 0;
+    srand((unsigned int)time(NULL));
+    pieza p;
+
+
     Tablero mi_tablero;
     //EMA:Prueba de tablero
     printf("=== CONFIGURACION DEL TABLERO DE TETRIS ===\n");
@@ -30,8 +36,13 @@ int main()
         return 1;
     }
 
+    //prueba de creacion de pieza
+    pieza_aleatoria(&p, c);
+    printf("Pieza creada tipo: %d en posicion (%d, %d)\n", p.tipo, p.x, p.y);
+
     printf("\n--- TABLERO INICIAL (%zux%zu) ---\n", mi_tablero.filas, mi_tablero.columnas);
     imprimir_tablero(&mi_tablero);
+
 
     // Simulación: llenamos la última fila para probar la detección y limpieza de líneas
     for (size_t col = 0; col < mi_tablero.columnas; col++) {
