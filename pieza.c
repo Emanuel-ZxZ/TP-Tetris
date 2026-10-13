@@ -7,7 +7,7 @@ void pieza_aleatoria(pieza *p, size_t columnas_tablero)
     if (!p) return;
 
     //Elegir un tipo de pieza al azar del 0 al 6
-    p->tipo = rand() % 7; //FLOR: probé esto pero por algun motivo necesita de la biblioteca time.h en el main y poner: "srand(time(NULL));" si no siempre genera la misma pieza, todavia no entiendo muy bien el porqué 
+    p->tipo = rand() % 7; //FLOR: probé esto pero por algun motivo necesita de la biblioteca time.h y en el main poner: "srand(time(NULL));" si no siempre genera la misma pieza, todavia no entiendo muy bien el porqué 
     p->rotacion = 0;
 
     // Centra la pieza arriba en el tablero
