@@ -62,3 +62,29 @@ void obtener_matriz_pieza(int tipo, int forma[][4]) // recibe la matriz de pieza
 }
 
 
+//Habia pensado en poner una macro para asignar el tamaño de la matriz con un #define TAM_PIEZA 4 pero ahora lo cambio
+//Pense en inicialiar primero la matriz con ceros para evitar que haya basura o algo y para despues poder imprimirla
+//Iría antes de la fc obtener la pieza
+void inicializar_pieza (Pieza*p){
+for(int i=0;i<4;i++){
+    for(int j=0;j<TAM_PIEZA;j++){
+        p->pieza[i][j]=0;
+    }
+}
+}
+
+void imprimir_pieza (pieza*p){
+for (int i = 0; i < TAM_PIEZA; i++) {
+    for (int j = 0; j < TAM_PIEZA; j++) {
+        if (p->pieza[i][j] == 1) {
+            printf("#");
+        } else {
+            printf(".");
+        }
+}
+printf("\n");
+}
+}
+
+
+
