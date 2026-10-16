@@ -42,6 +42,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="matriz_dinamica.h" />
+		<Unit filename="pieza.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pieza.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

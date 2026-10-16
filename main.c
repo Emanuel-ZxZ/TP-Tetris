@@ -1,44 +1,62 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "Tablero.h"
 #include "pieza.h"
+
+#define f 20
+#define c 10
 int main()
 {
-    int f = 0;
-    int c = 0;
+    Tablero mi_tablero; //creamos el tablero del jugador
     srand((unsigned int)time(NULL));
-    pieza p;
-
-
-    Tablero mi_tablero;
-    //EMA:Prueba de tablero
-    printf("=== CONFIGURACION DEL TABLERO DE TETRIS ===\n");
-
-    // EMA: Creanme 10 y 20 es lo ideal, probe con 30 y seria demasiado grande.
-    // Lectura y validación directa del tamaño
-    do {
-        printf("Ingrese filas (minimo 10, estandar 20): ");
-        scanf("%d", &f);
-    } while (f < 10);
-
-    do {
-        printf("Ingrese columnas (minimo 6, estandar 10): ");
-        scanf("%d", &c);
-    } while (c < 6);
-
-    size_t filas = (size_t)f;
-    size_t columnas = (size_t)c;
-
+    pieza p;//creamos donde se va a almacenar la pieza
+    pieza pieza2;//donde vamos a guardar la siguiente pieza
+    char movimiento;
+    int colision=0;
     // Creación del tablero con las dimensiones elegidas
-    if (!crear_tablero(&mi_tablero, filas, columnas)) {
+    if (!crear_tablero(&mi_tablero, f, c)) {
         printf("Error: No se pudo asignar memoria para el tablero.\n");
         return 1;
     }
+    imprimir_tablero(&mi_tablero);
+    pieza_aleatoria(&pieza2, c);//creamos la primer pieza fuera del do while
+    do
+    {
+        p=pieza2;//eric: guardamos la siguiente pieza en p
+        pieza_aleatoria(&pieza2,c);//eric: creamos la siguiente pieza para mostrarla
+        colision=0;
+        while (colision==0)//controlamo si la pieza ya choco asi pasamos a la siguiente
+        {
 
-    //prueba de creacion de pieza
-    pieza_aleatoria(&p, c);
-    printf("Pieza creada tipo: %d en posicion (%d, %d)\n", p.tipo, p.x, p.y);
+
+            scanf("%c",&movimiento);//eric: leemos el movimiento del jugador
+            toupper(movimiento);// eric: la normalizamos para la funcion
+            mover_pieza(&p,movimiento);//eric: mueve los valores x y
+            while(validar_movimiento())//valida si no choca con las paredes 0 si no choca 1 si lo hace.
+                {
+                    scanf("%c",&movimiento);//vuelve a pedir el movimineto hasta que este sea valido
+                    mover_pieza(&p,movimiento);
+                }
+            if (validar_colision())// 1 si no colisiona 0 si choca
+            {
+                //se muestra por pantalla con
+
+
+            }
+            else
+            {
+                guardar_matriz_en_tablero();
+            }
+
+        }
+        // una ves sale del while recien aca se pasa el valor de la matriz pieza a el tablero
+        void guardar_matriz_en_tablero ()
+
+    }while(!game_over());//controla si la persona ya perdio
+
+
 
     printf("\n--- TABLERO INICIAL (%zux%zu) ---\n", mi_tablero.filas, mi_tablero.columnas);
     imprimir_tablero(&mi_tablero);

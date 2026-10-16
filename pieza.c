@@ -6,7 +6,6 @@
 // LO QUE ESTA HECHO CON INDICES DESPUES LO CAMBIO A ARIMETICA DE PUNTEROS
 void pieza_aleatoria(pieza *p, size_t columnas_tablero)
 {
-    if (!p) return;
 
     //Elegir un tipo de pieza al azar del 0 al 6
     p->tipo = rand() % 7; //FLOR: probé esto pero por algun motivo necesita de la biblioteca time.h y en el main poner: "srand(time(NULL));" si no siempre genera la misma pieza, todavia no entiendo muy bien el porqué
@@ -68,7 +67,7 @@ void obtener_matriz_pieza(int tipo, int forma[][4]) // recibe la matriz de pieza
 //Pense en inicialiar primero la matriz con ceros para evitar que haya basura o algo y para despues poder imprimirla
 //Iría antes de la fc obtener la pieza
 
-void inicializar_pieza (pieza*p){
+void inicializar_pieza (pieza *p){
 for(int i=0;i<4;i++){
     for(int j=0;j<TAM_PIEZA;j++){
         p->forma[i][j]=0;
