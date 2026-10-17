@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Tablero.h"
 #include "matriz_dinamica.h"
+#include "pieza.h"
 
 int crear_tablero(Tablero *t, size_t filas, size_t columnas) {
     t->filas = filas;
@@ -12,7 +13,7 @@ int crear_tablero(Tablero *t, size_t filas, size_t columnas) {
     }
 
     inicializar_tablero(t);
-    return 1; // Éxito
+    return 1; // ï¿½xito
 }
 
 void destruir_tablero(Tablero *t) {
@@ -30,14 +31,30 @@ void inicializar_tablero(Tablero *t) {
     }
 }
 
-int casilla_ocupada(const Tablero *t, int fila, int columna) {
-    if (columna < 0 || (size_t)columna >= t->columnas || (size_t)fila >= t->filas) {
-        return 1; // Fora de los límites
+int hay_colision(const Tablero *t, const pieza *p)
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+
+            if (p->forma[i][j] == 1) {//mapeamos la posicion de la pieza en el tablero
+
+                int fila    = p->y + i;
+                int columna = p->x + j;
+
+                if (columna < 0 || columna >= (int)t->columnas) { //preguntamos las paredes
+                    return 1;
+                }
+                if (fila >= (int)t->filas) {//preguntamos el piso
+                    return 1;
+                }
+                
+                if (fila >= 0 && t->grilla[fila][columna] != 0) { //preguntamos si ya existen piezas fijas
+                    return 1;
+                }
+            }
+        }
     }
-    if (fila < 0) {
-        return 0; // Zona de entrada de pieza
-    }
-    return t->grilla[fila][columna] != 0;
+    return 0;   // No hay colisiÃ³n
 }
 
 int limpiar_lineas_completas(Tablero *t) {
@@ -66,7 +83,7 @@ int limpiar_lineas_completas(Tablero *t) {
                 t->grilla[0][j] = 0;
             }
 
-            i++; // Reevalúa la fila desplazada
+            i++; // Reevalï¿½a la fila desplazada
         }
     }
 
