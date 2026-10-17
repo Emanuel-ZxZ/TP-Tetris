@@ -14,4 +14,5 @@ void imprimir_tablero(const Tablero *t);
 int  casilla_ocupada(const Tablero *t, int fila, int columna);
 int  limpiar_lineas_completas(Tablero *t);
 
+void imprimir_tablero_con_pieza();///FALTA HACER
 #endif // TABLERO_H_INCLUDED

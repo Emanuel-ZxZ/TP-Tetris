@@ -24,7 +24,7 @@
 	"Tablero.h"
 	"pieza.h"
 
-1792170895 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.h
+1792260535 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.h
 
 1790729995 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\matriz_dinamica.c
 	<stdlib.h>
@@ -37,10 +37,11 @@
 	<stdlib.h>
 	"pieza.h"
 
-1790729995 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
+1792257148 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
 	<stdio.h>
 	"Tablero.h"
 	"matriz_dinamica.h"
+	"pieza.h"
 
-1792170895 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.h
+1792265187 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.h
 
