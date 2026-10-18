@@ -21,7 +21,7 @@ int main()
     int esvalido;
     char movimiento;
 
-    // Creación del tablero con las dimensiones elegidas
+    // Creacion del tablero con las dimensiones elegidas
     if (!crear_tablero(&mi_tablero, f, c)) {
         printf("Error: No se pudo asignar memoria para el tablero.\n");
         return 1;
@@ -66,14 +66,14 @@ int main()
 
             if (validar_colision(&mi_tablero, &p))
             {
-                printf("¡GAME OVER!\n");
+                printf("GAME OVER!\n");
                 juegoactivo = 0;
             }
 
 
     }
 
-    // Simulación: llenamos la última fila para probar la detección y limpieza de líneas
+    // Simulacion: llenamos la ï¿½ltima fila para probar la deteccion y limpieza de lineas
     for (size_t col = 0; col < mi_tablero.columnas; col++) {
         mi_tablero.grilla[mi_tablero.filas - 1][col] = 1;
     }
@@ -81,13 +81,13 @@ int main()
     printf("\n--- TABLERO CON FILA INFERIOR LLENA ---\n");
     imprimir_tablero(&mi_tablero);
 
-    // Limpieza de líneas
+    // Limpieza de lï¿½neas
     int limpiadas = limpiar_lineas_completas(&mi_tablero);
     printf("\nLineas despejadas: %d\n", limpiadas);
 
 
 
-    // Liberación de memoria antes de finalizar
+    // Liberaciï¿½n de memoria antes de finalizar
     destruir_tablero(&mi_tablero);
     printf("\nMemoria liberada correctamente.\n");
 

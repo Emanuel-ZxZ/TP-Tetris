@@ -57,37 +57,42 @@ int hay_colision(const Tablero *t, const pieza *p)
     return 0;   // No hay colisión
 }
 
-int limpiar_lineas_completas(Tablero *t) {
-    int lineas_limpiadas = 0;
 
-    for (int i = (int)t->filas - 1; i >= 0; i--) {
-        int fila_llena = 1;
+int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta ocupada si la fila esta llena manda un 1 si no 0 marcando 
+{
+    int j;
 
-        for (size_t j = 0; j < t->columnas; j++) {
-            if (t->grilla[i][j] == 0) {
-                fila_llena = 0;
-                break;
-            }
-        }
+    for (j = 0; j < (int)t->columnas; j++)
+        if (t->grilla[fila][j] == 0)
+            return 1;
+    return 0;
+}
 
-        if (fila_llena) {
-            lineas_limpiadas++;
+void bajar_filas(Tablero *t, int fila)//se le pasa la fila que esta completa y copia la fia encima de esta en la posicion siguiente asi hasta la fila 0 
+{
+    int k, j;
 
-            for (int k = i; k > 0; k--) {
-                for (size_t j = 0; j < t->columnas; j++) {
-                    t->grilla[k][j] = t->grilla[k - 1][j];
-                }
-            }
+    for (k = fila; k > 0; k--)
+        for (j = 0; j < (int)t->columnas; j++)
+            t->grilla[k][j] = t->grilla[k - 1][j];
+    for (j = 0; j < (int)t->columnas; j++)//este for pone en 0 a la primera fila despues de todo el movimiento para dar paso a la siguiente pieza es necesario para no tener piezas bugueadas
+        t->grilla[0][j] = 0;
+}
 
-            for (size_t j = 0; j < t->columnas; j++) {
-                t->grilla[0][j] = 0;
-            }
+int limpiar_lineas_completas(Tablero *t)//esta te recorre toda la tabla para ver si hubo mas de una fila llena y las va eliminando y contandolas eliminadas
+{
+    int lineas = 0, i;
 
-            i++; // Reeval�a la fila desplazada
+    for (i = (int)t->filas - 1; i >= 0; i--)
+    {
+        if (fila_completa(t, i))
+        {
+            bajar_filas(t, i);
+            lineas++;
+            i++;                             
         }
     }
-
-    return lineas_limpiadas;
+    return lineas;
 }
 
 void imprimir_tablero(const Tablero *t) {
