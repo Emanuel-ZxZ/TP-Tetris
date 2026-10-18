@@ -9,8 +9,6 @@
 #define f 20
 #define c 10
 
-#define TOUPPER(X) ((X)>='a'&&(X)<='z' ? (X)-('a'-'A') : (X)) //creo que las macros iban en el .h pero lo deje aca para probarlo
-
 int main()
 {
     srand((unsigned int)time(NULL));
@@ -42,7 +40,7 @@ int main()
         imprimir_pieza(&piezasiguiente);//se muestra la siguiente pieza
 
         movimiento=getch();//eric: leemos el movimiento del jugador
-        movimiento=TOUPPER(movimiento);// eric: la normalizamos para la funcion
+        movimiento=toupper(movimiento);// eric: la normalizamos para la funcion
 
         piezatemp=p;//guardamos una copia para calcular el movimineto sin perder la posicion
         mover_pieza(&piezatemp,movimiento);
