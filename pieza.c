@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pieza.h"
+#include "Tablero.h"
 
 #define TAM_PIEZA 4
 // LO QUE ESTA HECHO CON INDICES DESPUES LO CAMBIO A ARIMETICA DE PUNTEROS
@@ -88,5 +89,13 @@ printf("\n");
 }
 }
 
+void fijar_pieza(Tablero *t, const pieza *p)//copia la pieza del 4x4 y la pega en la matris
+{
+    int i, j;//i=fila, j=columna
 
+    for (i = 0; i < TAM_PIEZA; i++)
+        for (j = 0; j < TAM_PIEZA; j++)
+            if (p->forma[i][j] == 1 && p->y + i >= 0)
+                t->grilla[p->y + i][p->x + j] = p->tipo + 1;
+}
 

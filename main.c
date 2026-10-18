@@ -48,7 +48,7 @@ int main()
         if (esvalido==0)
         {
             p=piezatemp;
-            imprimir_tablero_con_pieza();
+            imprimir_tablero_con_pieza();// que hace esta funcion??
         }
         else if(esvalido==1)//hubo colision
         {

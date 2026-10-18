@@ -13,7 +13,7 @@ void pieza_aleatoria(pieza *p, size_t columnas_tablero);// funcion para generar 
 void obtener_matriz_pieza(int tipo, int forma[][4]);// funcion para cargar los valores de la matriz forma
 
 int validar_colision (); /*valida si la pieza colisiona (en caso de que colisione tiene que pasar los detos de la matriz pieza al tablero)*/ ///FALTA HACER
-void guardar_matriz_en_tablero (); /*pasa los valores de la matriz 4x4 al tablero en caso de que la pieza colisione con otra*/ ///FALTA HACER
+void fijar_pieza(Tablero *t, const pieza *p);//void guardar_matriz_en_tablero (); /*pasa los valores de la matriz 4x4 al tablero en caso de que la pieza colisione con otra*/ ///FALTA HACER
 void mover_pieza (pieza *p, char movimiento); //carga el movimiento despues de ser validado (despues de que se controle de que no se mueva fuera de los limites
                                                          //y de que no choque con otra pieza)
 
