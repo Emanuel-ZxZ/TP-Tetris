@@ -3,6 +3,7 @@
 #include "matriz_dinamica.h"
 #include "pieza.h"
 
+#define TAM_PIEZA 4
 int crear_tablero(Tablero *t, size_t filas, size_t columnas) {
     t->filas = filas;
     t->columnas = columnas;
@@ -47,7 +48,7 @@ int hay_colision(const Tablero *t, const pieza *p)
                 if (fila >= (int)t->filas) {//preguntamos el piso
                     return 1;
                 }
-                
+
                 if (fila >= 0 && t->grilla[fila][columna] != 0) { //preguntamos si ya existen piezas fijas
                     return 1;
                 }
@@ -58,7 +59,7 @@ int hay_colision(const Tablero *t, const pieza *p)
 }
 
 
-int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta ocupada si la fila esta llena manda un 1 si no 0 marcando 
+int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta ocupada si la fila esta llena manda un 1 si no 0 marcando
 {
     int j;
 
@@ -68,7 +69,7 @@ int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta 
     return 0;
 }
 
-void bajar_filas(Tablero *t, int fila)//se le pasa la fila que esta completa y copia la fia encima de esta en la posicion siguiente asi hasta la fila 0 
+void bajar_filas(Tablero *t, int fila)//se le pasa la fila que esta completa y copia la fia encima de esta en la posicion siguiente asi hasta la fila 0
 {
     int k, j;
 
@@ -89,7 +90,7 @@ int limpiar_lineas_completas(Tablero *t)//esta te recorre toda la tabla para ver
         {
             bajar_filas(t, i);
             lineas++;
-            i++;                             
+            i++;
         }
     }
     return lineas;
@@ -108,4 +109,14 @@ void imprimir_tablero(const Tablero *t) {
         printf("|\n");
     }
     printf("--------------------------------\n");
+}
+
+void fijar_pieza(Tablero *t, const pieza *p)//copia la pieza del 4x4 y la pega en la matris
+{
+    int i, j;//i=fila, j=columna
+
+    for (i = 0; i < TAM_PIEZA; i++)
+        for (j = 0; j < TAM_PIEZA; j++)
+            if (p->forma[i][j] == 1 && p->y + i >= 0)
+                t->grilla[p->y + i][p->x + j] = p->tipo + 1;
 }

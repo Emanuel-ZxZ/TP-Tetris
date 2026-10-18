@@ -22,7 +22,8 @@ int main()
     char movimiento;
 
     // Creacion del tablero con las dimensiones elegidas
-    if (!crear_tablero(&mi_tablero, f, c)) {
+    if (!crear_tablero(&mi_tablero, f, c))
+    {
         printf("Error: No se pudo asignar memoria para el tablero.\n");
         return 1;
     }
@@ -32,7 +33,6 @@ int main()
     pieza_aleatoria(&piezasiguiente,c);
     while (juegoactivo)
     {
-
         printf("=== TETRIS DE CONSOLA ===\n");
         printf("PUNTAJE: %d pts\n", puntaje);
         printf("[A] Izq  [D] Der  [S] Bajar  [W] Rotar  [Q] Salir\n\n");
@@ -43,17 +43,17 @@ int main()
 
         piezatemp=p;//guardamos una copia para calcular el movimineto sin perder la posicion
         mover_pieza(&piezatemp,movimiento);
-        esvalido=validar_colision(&mi_tablero,&piezatemp);// 0 si no choca 1 si choca y 2 se ignora el movimiento porque se sale de los bordes
+        esvalido=hay_colision(&mi_tablero,&piezatemp);// 0 si no choca 1 si choca y 2 se ignora el movimiento porque se sale de los bordes
 
         if (esvalido==0)
         {
             p=piezatemp;
-            imprimir_tablero_con_pieza();// que hace esta funcion??
+
         }
         else if(esvalido==1)//hubo colision
         {
 
-            guardar_matriz_en_tablero (&mi_tablero,&piezatemp);///falta hacer
+            fijar_pieza(&mi_tablero,&piezatemp);///falta hacer
             int filaslimpiadas=limpiar_lineas_completas(&mi_tablero);
 
             if (filaslimpiadas>0)
@@ -64,29 +64,13 @@ int main()
             p=piezasiguiente;//eric: guardamos la siguiente pieza en p
             pieza_aleatoria(&piezasiguiente,c);//eric: creamos la siguiente pieza para mostrarla
 
-            if (validar_colision(&mi_tablero, &p))
+            if (hay_colision(&mi_tablero, &p))
             {
                 printf("GAME OVER!\n");
                 juegoactivo = 0;
             }
-
-
+        }
     }
-
-    // Simulacion: llenamos la �ltima fila para probar la deteccion y limpieza de lineas
-    for (size_t col = 0; col < mi_tablero.columnas; col++) {
-        mi_tablero.grilla[mi_tablero.filas - 1][col] = 1;
-    }
-
-    printf("\n--- TABLERO CON FILA INFERIOR LLENA ---\n");
-    imprimir_tablero(&mi_tablero);
-
-    // Limpieza de l�neas
-    int limpiadas = limpiar_lineas_completas(&mi_tablero);
-    printf("\nLineas despejadas: %d\n", limpiadas);
-
-
-
     // Liberaci�n de memoria antes de finalizar
     destruir_tablero(&mi_tablero);
     printf("\nMemoria liberada correctamente.\n");

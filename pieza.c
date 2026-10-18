@@ -89,13 +89,5 @@ printf("\n");
 }
 }
 
-void fijar_pieza(Tablero *t, const pieza *p)//copia la pieza del 4x4 y la pega en la matris
-{
-    int i, j;//i=fila, j=columna
 
-    for (i = 0; i < TAM_PIEZA; i++)
-        for (j = 0; j < TAM_PIEZA; j++)
-            if (p->forma[i][j] == 1 && p->y + i >= 0)
-                t->grilla[p->y + i][p->x + j] = p->tipo + 1;
-}
 
