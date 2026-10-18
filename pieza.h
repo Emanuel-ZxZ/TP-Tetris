@@ -19,4 +19,6 @@ void mover_pieza (pieza *p, char movimiento); //carga el movimiento despues de s
 void imprimir_pieza (pieza *p);
 void inicializar_pieza (pieza *p);
 
+void rotar(pieza *p);
+
 #endif // PIEZA_H_INCLUDED
