@@ -106,3 +106,14 @@ int mover_pieza (pieza*p, char movimiento){
     }
 }
 
+void rotar(pieza *p){
+    pieza copia = *p;
+    pieza*temporal= &copia;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            p->forma[i][j] = temporal->forma[TAM_PIEZA-1-j][i];
+        }
+    }
+
+}
