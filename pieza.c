@@ -9,7 +9,7 @@ void pieza_aleatoria(pieza *p, size_t columnas_tablero)
 {
 
     //Elegir un tipo de pieza al azar del 0 al 6
-    p->tipo = rand() % 7; //FLOR: probé esto pero por algun motivo necesita de la biblioteca time.h y en el main poner: "srand(time(NULL));" si no siempre genera la misma pieza, todavia no entiendo muy bien el porqué
+    p->tipo = rand() % 7; 
     p->rotacion = 0;
 
     // Centra la pieza arriba en el tablero
@@ -89,7 +89,7 @@ printf("\n");
 }
 }
 
-//FLOR: despues voy a hacer la de gravedad, por algun motivo si dejo la caida anclada a la tecla, hay casos donde se buggea y no llega a la base
+//FLOR: despues voy a hacer la de gravedad,si dejo la caida anclada a la tecla, hay casos donde se buggea y no llega a la base
 int mover_pieza (pieza*p, char movimiento){
     switch(movimiento){
     case 'A':
