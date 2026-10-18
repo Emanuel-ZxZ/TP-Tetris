@@ -89,5 +89,20 @@ printf("\n");
 }
 }
 
-
+//FLOR: despues voy a hacer la de gravedad, por algun motivo si dejo la caida anclada a la tecla, hay casos donde se buggea y no llega a la base
+int mover_pieza (pieza*p, char movimiento){
+    switch(movimiento){
+    case 'A':
+        p->x-=1;
+        break;
+    case 'S':
+        p->y+=1;
+        break;
+    case 'D':
+        p->x+=1;
+        break;
+    case 'W':
+        rotar(p);
+    }
+}
 
