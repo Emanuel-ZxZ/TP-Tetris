@@ -106,14 +106,33 @@ void mover_pieza (pieza*p, char movimiento){
     }
 }
 
-void rotar(pieza *p){
-    pieza copia = *p;
-    pieza*temporal= &copia;
 
+void rotar(pieza *p) {
+    int aux[4][4] = {{0}}; //cambie por una matriz auxiliar ya que al final no use ninguna otra variable de la estructura pra la rotacion
+    int rango = 3; //Para las formas L,J,Z,S,T
+                    //si se deja 4, el "centro" de la matriz varia
+                    //al reducir a 3 (las piezas mencionadas entran en este rango) el centro es solo 1
+                    //por eso ya no se mueve al rotar
+
+    if (p->tipo == 0) { //si la forma es I, el tamaño vuelve a 4, su forma 4x1 no entraria en este nuevo tam
+        rango = 4;
+    }else if (p-> tipo == 3){ //si la forma es O, sale. el cuadrado no cambia al rotar
+        return;
+    }
+
+    //copia en la matriz aux la pieza 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            p->forma[i][j] = temporal->forma[TAM_PIEZA-1-j][i];
+            aux[i][j]=p->forma[i][j];
         }
     }
+
+    //aplica rotacion en el rango 3 x 3
+    for (int i = 0; i < rango; i++) {
+        for (int j = 0; j < rango; j++) {
+            p->forma[i][j] = aux[rango - 1 - j][i];
+        }
+    }
+}
 
 }
