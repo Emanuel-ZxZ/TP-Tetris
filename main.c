@@ -54,7 +54,6 @@ int main()
         if (esvalido==0)
         {
             p=piezatemp;
-
         }
         else if(esvalido==1)//hubo colision
         {
@@ -75,7 +74,7 @@ int main()
                 printf("GAME OVER!\n");
                 juegoactivo = 0;
             }
-            imprimir_tablero_pieza(&mi_tablero,&p);
+
         }
 
     }
