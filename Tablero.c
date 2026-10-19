@@ -188,8 +188,8 @@ int gravedad(Tablero *t, pieza *p){
 
     if (hay_colision(t,temporal) == 0){ //comprueba que no haya colision
         p->y++;
-        return 0; //no hay colision y la pieza se mueve
+        return 1; //no hay colision y la pieza se mueve
     }
 
-    return 1; //hay colision y la pieza se queda quieta
+    return 0; //hay colision y la pieza se queda quieta
 }
