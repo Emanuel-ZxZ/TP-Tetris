@@ -49,7 +49,7 @@ int main()
 
         //agregué esto para que lea la Q como salida
         if (movimiento == 'Q') {
-        printf("GAME OVER!\n");
+        printf("GAME OVER!\n Puntaje final: %d",puntaje); //detallito
         juegoactivo = 0;
         }
         
@@ -77,7 +77,7 @@ int main()
 
             if (hay_colision(&mi_tablero, &p))
             {
-                printf("GAME OVER!\n");
+                printf("GAME OVER!\n Puntaje final: %d",puntaje); //detallito
                 juegoactivo = 0;
             }
 
