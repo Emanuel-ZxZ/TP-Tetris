@@ -11,6 +11,7 @@
 
 int main()
 {
+    system("mode con: cols=50 lines=30");
     srand((unsigned int)time(NULL));
 
     Tablero mi_tablero; //creamos el tablero del jugador
@@ -32,15 +33,19 @@ int main()
     pieza_aleatoria(&piezasiguiente,c);//eric: creamos la siguiente pieza para mostrarla
     p=piezasiguiente;//eric: guardamos la siguiente pieza en p
     pieza_aleatoria(&piezasiguiente,c);
+
     while (juegoactivo)
     {
         printf("=== TETRIS DE CONSOLA ===\n");
         printf("PUNTAJE: %d pts\n", puntaje);
         printf("[A] Izq  [D] Der  [S] Bajar  [W] Rotar  [Q] Salir\n\n");
         imprimir_pieza(&piezasiguiente);//se muestra la siguiente pieza
+        printf("\n");
+        imprimir_tablero_pieza(&mi_tablero,&p);
 
         movimiento=getch();//eric: leemos el movimiento del jugador
         movimiento=toupper(movimiento);// eric: la normalizamos para la funcion
+        system("cls");
 
         piezatemp=p;//guardamos una copia para calcular el movimineto sin perder la posicion
         mover_pieza(&piezatemp,movimiento);
@@ -49,12 +54,14 @@ int main()
         if (esvalido==0)
         {
             p=piezatemp;
+            mover_pieza(&p,movimiento);
+
 
         }
         else if(esvalido==1)//hubo colision
         {
 
-            fijar_pieza(&mi_tablero,&piezatemp);///falta hacer
+            fijar_pieza(&mi_tablero,&piezatemp);
             int filaslimpiadas=limpiar_lineas_completas(&mi_tablero);
 
             if (filaslimpiadas>0)
@@ -70,7 +77,9 @@ int main()
                 printf("GAME OVER!\n");
                 juegoactivo = 0;
             }
+            imprimir_tablero_pieza(&mi_tablero,&p);
         }
+
     }
     // Liberaci�n de memoria antes de finalizar
     destruir_tablero(&mi_tablero);

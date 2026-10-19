@@ -65,8 +65,8 @@ int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta 
 
     for (j = 0; j < (int)t->columnas; j++)
         if (t->grilla[fila][j] == 0)
-            return 1;
-    return 0;
+            return 0;
+    return 1;
 }
 
 void bajar_filas(Tablero *t, int fila)//se le pasa la fila que esta completa y copia la fia encima de esta en la posicion siguiente asi hasta la fila 0
@@ -109,6 +109,48 @@ void imprimir_tablero(const Tablero *t) {
         printf("|\n");
     }
     printf("--------------------------------\n");
+}
+
+void imprimir_tablero_pieza(const Tablero *t, const pieza *p)
+{
+    for (int i=0; i<t->filas;i++)
+    {
+        printf("             |");//Borde izquierdo del tablero
+
+        for (int j=0;j<t->columnas;j++)
+        {
+            int es_bloque_pieza = 0;
+
+            // 1. ¿La celda (i, j) cae dentro del molde 4x4 de la pieza?
+            if ((i>=p->y && i < p->y + 4) && (j >= p->x && j < p->x + 4))
+            {
+                int rel_y = i - p->y;
+                int rel_x = j - p->x;
+
+                // Si en esa posición del molde 4x4 hay un bloque de la ficha (1)
+                if (p->forma[rel_y][rel_x] != 0)
+                {
+                    es_bloque_pieza = 1;
+                }
+            }
+
+            // 2. Decisión de qué imprimir en pantalla
+            if (es_bloque_pieza)
+            {
+                printf("# "); // Bloque de la pieza activa que va cayendo
+            }
+            else if (*(*(t->grilla+i)+j)!=0) // Aritmética de punteros pura
+            {
+                printf("X "); // Bloques de piezas fijadas anteriormente
+            }
+            else
+            {
+                printf(". "); // Casilla vacía del tablero
+            }
+        }
+
+        printf("|\n"); // Borde derecho del tablero y salto de línea
+    }
 }
 
 void fijar_pieza(Tablero *t, const pieza *p)//copia la pieza del 4x4 y la pega en la matris

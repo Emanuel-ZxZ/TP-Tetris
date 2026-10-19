@@ -9,7 +9,7 @@ void pieza_aleatoria(pieza *p, size_t columnas_tablero)
 {
 
     //Elegir un tipo de pieza al azar del 0 al 6
-    p->tipo = rand() % 7; 
+    p->tipo = rand() % 7;
     p->rotacion = 0;
 
     // Centra la pieza arriba en el tablero
@@ -90,7 +90,7 @@ printf("\n");
 }
 
 //FLOR: despues voy a hacer la de gravedad,si dejo la caida anclada a la tecla, hay casos donde se buggea y no llega a la base
-int mover_pieza (pieza*p, char movimiento){
+void mover_pieza (pieza*p, char movimiento){
     switch(movimiento){
     case 'A':
         p->x-=1;
