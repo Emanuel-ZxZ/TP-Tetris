@@ -47,6 +47,12 @@ int main()
         movimiento=toupper(movimiento);// eric: la normalizamos para la funcion
         system("cls");
 
+        //agregué esto para que lea la Q como salida
+        if (movimiento == 'Q') {
+        printf("GAME OVER!\n");
+        juegoactivo = 0;
+        }
+        
         piezatemp=p;//guardamos una copia para calcular el movimineto sin perder la posicion
         mover_pieza(&piezatemp,movimiento);
         esvalido=hay_colision(&mi_tablero,&piezatemp);// 0 si no choca 1 si choca y 2 se ignora el movimiento porque se sale de los bordes
