@@ -175,3 +175,21 @@ void fijar_pieza(Tablero *t, const pieza *p)
         }
     }
 }
+
+
+//FLOR: la idea es que vaya en el main pero ando viendo eso aa. En pieza.c no me compila )?
+//Igual esto sería como un "por las dudas", por si el profesor espera una funcion
+int gravedad(Tablero *t, pieza *p){
+    pieza copia = *p;
+    pieza*temporal=&copia;
+
+    //la posible siguiente posicion de la pieza
+    temporal->y++;
+
+    if (hay_colision(t,temporal) == 0){ //comprueba que no haya colision
+        p->y++;
+        return 0; //no hay colision y la pieza se mueve
+    }
+
+    return 1; //hay colision y la pieza se queda quieta
+}
