@@ -43,7 +43,7 @@ int hay_colision(const Tablero *t, const pieza *p)
                 int columna = p->x + j;
 
                 if (columna < 0 || columna >= (int)t->columnas) { //preguntamos las paredes
-                    return 1;
+                    return 2;
                 }
                 if (fila >= (int)t->filas) {//preguntamos el piso
                     return 1;
@@ -121,25 +121,25 @@ void imprimir_tablero_pieza(const Tablero *t, const pieza *p)
         {
             int es_bloque_pieza = 0;
 
-            // 1. ¿La celda (i, j) cae dentro del molde 4x4 de la pieza?
+
             if ((i>=p->y && i < p->y + 4) && (j >= p->x && j < p->x + 4))
             {
                 int rel_y = i - p->y;
                 int rel_x = j - p->x;
 
-                // Si en esa posición del molde 4x4 hay un bloque de la ficha (1)
-                if (p->forma[rel_y][rel_x] != 0)
+
+                if (p->forma[rel_y][rel_x] != 0)//Si en esa posición del molde 4x4 hay un bloque de la ficha 1
                 {
                     es_bloque_pieza = 1;
                 }
             }
 
-            // 2. Decisión de qué imprimir en pantalla
-            if (es_bloque_pieza)
+
+            if (es_bloque_pieza)//Decisión de qué imprimir en pantalla
             {
                 printf("# "); // Bloque de la pieza activa que va cayendo
             }
-            else if (*(*(t->grilla+i)+j)!=0) // Aritmética de punteros pura
+            else if (*(*(t->grilla+i)+j)!=0)
             {
                 printf("X "); // Bloques de piezas fijadas anteriormente
             }
