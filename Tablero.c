@@ -153,12 +153,25 @@ void imprimir_tablero_pieza(const Tablero *t, const pieza *p)
     }
 }
 
-void fijar_pieza(Tablero *t, const pieza *p)//copia la pieza del 4x4 y la pega en la matris
+void fijar_pieza(Tablero *t, const pieza *p)
 {
-    int i, j;//i=fila, j=columna
+    for (int i=0;i<4;i++)//recorremos la matriz de pieza
+    {
+        for (int j=0;j<4;j++)
+        {
+            if (p->forma[i][j]==1)//solo cuando detecta un 1 en la pieza entra esto para q no de errores de memoria
+            {
+                int fila=p->y+i;// ponemos la posicion de la fila correspondiente (p->y guarda
+                                //la posicion del borde superior izquierdo de la matriz pieza entonces le sumamos
+                                //i para que se mueva la cantidad de espacios necesarios para equiparar su posicion en el tablero
+                int columna=p->x+j;// guardamos la posicion de la columna correspondiente
 
-    for (i = 0; i < TAM_PIEZA; i++)
-        for (j = 0; j < TAM_PIEZA; j++)
-            if (p->forma[i][j] == 1 && p->y + i >= 0)
-                t->grilla[p->y + i][p->x + j] = p->tipo + 1;
+                if (fila >= 0 && fila < t->filas &&
+                    columna >= 0 && columna < t->columnas)//controlamos que no este por debajo de la ultima fila para no pasarnos de la memoria
+                {
+                    *(*(t->grilla + fila) + columna) = 1;//en un futuro lo vamos a reemplazar por p->tipo asi sabemos de que tipo es y podemos ponerle distintos colores etc
+                }
+            }
+        }
+    }
 }

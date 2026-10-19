@@ -16,7 +16,7 @@
 
 1790200974 c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\matriz_dinamica.h
 
-1792368441 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\main.c
+1792378157 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\main.c
 	<stdio.h>
 	<time.h>
 	<stdlib.h>
@@ -40,7 +40,7 @@
 	"pieza.h"
 	"Tablero.h"
 
-1792369761 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
+1792377985 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
 	<stdio.h>
 	"Tablero.h"
 	"matriz_dinamica.h"

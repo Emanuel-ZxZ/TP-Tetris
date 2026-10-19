@@ -54,14 +54,12 @@ int main()
         if (esvalido==0)
         {
             p=piezatemp;
-            mover_pieza(&p,movimiento);
-
 
         }
         else if(esvalido==1)//hubo colision
         {
 
-            fijar_pieza(&mi_tablero,&piezatemp);
+            fijar_pieza(&mi_tablero,&p);//fijamos la pieza original antes de hacer el movimiento
             int filaslimpiadas=limpiar_lineas_completas(&mi_tablero);
 
             if (filaslimpiadas>0)
