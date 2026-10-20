@@ -40,8 +40,8 @@ int main()
     while (juegoactivo)
     {
         limpiar_pantalla_sin_parpadeo();
-        printf("=== TETRIS DE CONSOLA ===\n");
-        printf("PUNTAJE: %d pts\n", puntaje);
+        printf("            === TETRIS DE CONSOLA ===\n");
+        printf("                PUNTAJE: %d pts\n", puntaje);
         printf("[A] Izq  [D] Der  [S] Bajar  [W] Rotar  [Q] Salir\n\n");
         imprimir_pieza(&piezasiguiente);//se muestra la siguiente pieza
         printf("\n");
@@ -54,7 +54,7 @@ int main()
 
             //agregué esto para que lea la Q como salida
             if (movimiento == 'Q') {
-            printf("GAME OVER!\n Puntaje final: %d",puntaje); //detallito
+            printf("                === GAME OVER! ===\n\nPuntaje final: %d",puntaje); //detallito
             juegoactivo = 0;
             }
 
@@ -82,7 +82,7 @@ int main()
 
                 if (hay_colision(&mi_tablero, &p))
                 {
-                    printf("GAME OVER!\n Puntaje final: %d",puntaje); //detallito
+                    printf("                === GAME OVER! ===\n\nPuntaje final: %d",puntaje); //detallito
                     juegoactivo = 0;
                 }
 
@@ -90,7 +90,8 @@ int main()
         }
         /// GRAVEDAD
         contador_pasos++;
-        if (contador_pasos >= velocidad_caida)
+        
+        /*if (contador_pasos >= velocidad_caida)
         {
             contador_pasos = 0; //reinicia el contador
 
@@ -101,6 +102,7 @@ int main()
             {
                 p.y += 1; // La gravedad la hace bajar
             }
+            
             else
             {
                 // Si por gravedad toca el piso/pieza -> Se fija automáticamente
@@ -112,11 +114,34 @@ int main()
                 pieza_aleatoria(&piezasiguiente, mi_tablero.columnas);
 
                 if (hay_colision(&mi_tablero, &p) != 0) {
-                    printf("\n¡GAME OVER!\n");
+                    printf("                === GAME OVER! ===\n\nPuntaje final: %d",puntaje);
+                    juegoactivo = 0;
+                }
+            }
+        }*/
+
+        if (contador_pasos >= velocidad_caida)
+        {
+            contador_pasos = 0; //reinicia el contador
+
+            if (gravedad(&mi_tablero, &p) == 0){ // cambie agregando al funcion de gravedad. no borre el anterior por las dudas
+                // Si por gravedad toca el piso/pieza -> Se fija automáticamente
+                fijar_pieza(&mi_tablero, &p);
+                int lineas = limpiar_lineas_completas(&mi_tablero);
+                if (lineas > 0) puntaje += 300 * lineas;
+
+                p = piezasiguiente;
+                pieza_aleatoria(&piezasiguiente, mi_tablero.columnas);
+
+                if (hay_colision(&mi_tablero, &p) != 0) {
+                    printf("                === GAME OVER! ===\n\nPuntaje final: %d",puntaje);
                     juegoactivo = 0;
                 }
             }
         }
+
+
+        
         Sleep(50); //Pequeña pausa de 50ms para mantener una tasa constante de refresco
 
     }
