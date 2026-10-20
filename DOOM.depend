@@ -16,14 +16,15 @@
 
 1790200974 c:\users\usuario\pictures\unlam ema\topicos\proyecto\tetris\doom\matriz_dinamica.h
 
-1792379245 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\main.c
+1792457416 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\main.c
 	<stdio.h>
 	<time.h>
-	<stdlib.h>
 	<ctype.h>
 	<conio.h>
+	<windows.h>
 	"Tablero.h"
 	"pieza.h"
+	"juego.h"
 
 1792366195 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.h
 	"pieza.h"
@@ -34,17 +35,24 @@
 
 1790729995 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\matriz_dinamica.h
 
-1792365492 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.c
+1792454176 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.c
 	<stdio.h>
 	<stdlib.h>
 	"pieza.h"
 	"Tablero.h"
 
-1792377985 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
+1792453469 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\tablero.c
 	<stdio.h>
 	"Tablero.h"
 	"matriz_dinamica.h"
 	"pieza.h"
 
 1792365388 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\pieza.h
+
+1792456800 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\juego.c
+	<windows.h>
+
+1792456764 source:c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\juego.h
+
+1792456764 c:\users\ericn\onedrive\documentos\programas\projectos\tetris tp\tp-tetris\juego.h
 

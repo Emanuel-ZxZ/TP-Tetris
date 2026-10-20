@@ -120,7 +120,7 @@ void rotar(pieza *p) {
         return;
     }
 
-    //copia en la matriz aux la pieza 
+    //copia en la matriz aux la pieza
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             aux[i][j]=p->forma[i][j];
@@ -133,6 +133,4 @@ void rotar(pieza *p) {
             p->forma[i][j] = aux[rango - 1 - j][i];
         }
     }
-}
-
 }
