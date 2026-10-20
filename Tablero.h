@@ -19,4 +19,7 @@ int limpiar_lineas_completas(Tablero *t);
 
 void imprimir_tablero_pieza(const Tablero *t, const pieza *p);
 void fijar_pieza(Tablero *t, const pieza *p);//void guardar_matriz_en_tablero (); /*pasa los valores de la matriz 4x4 al tablero en caso de que la pieza colisione con otra*/
+
+int gravedad(Tablero *t, pieza *p);
+
 #endif // TABLERO_H_INCLUDED
