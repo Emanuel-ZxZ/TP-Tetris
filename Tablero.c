@@ -27,7 +27,7 @@ void destruir_tablero(Tablero *t) {
 void inicializar_tablero(Tablero *t) {
     for (size_t i = 0; i < t->filas; i++) {
         for (size_t j = 0; j < t->columnas; j++) {
-            t->grilla[i][j] = 0;
+            *(*(t->grilla+i)+j) = 0;
         }
     }
 }
@@ -43,14 +43,14 @@ int hay_colision(const Tablero *t, const pieza *p)
                 int columna = p->x + j;
 
                 if (columna < 0 || columna >= (int)t->columnas) { //preguntamos las paredes
-                    return 2;
+                    return 2;//choca con las paredes
                 }
                 if (fila >= (int)t->filas) {//preguntamos el piso
-                    return 1;
+                    return 1;//hay colision
                 }
 
-                if (fila >= 0 && t->grilla[fila][columna] != 0) { //preguntamos si ya existen piezas fijas
-                    return 1;
+                if (fila >= 0 && *(*(t->grilla+fila)+columna) != 0) { //preguntamos si ya existen piezas fijas
+                    return 1;// hay colision
                 }
             }
         }
@@ -64,7 +64,7 @@ int fila_completa(const Tablero *t, int fila)//revisa columna a columna si esta 
     int j;
 
     for (j = 0; j < (int)t->columnas; j++)
-        if (t->grilla[fila][j] == 0)
+        if (*(*(t->grilla+fila)+j) == 0)
             return 0;
     return 1;
 }
@@ -75,9 +75,9 @@ void bajar_filas(Tablero *t, int fila)//se le pasa la fila que esta completa y c
 
     for (k = fila; k > 0; k--)
         for (j = 0; j < (int)t->columnas; j++)
-            t->grilla[k][j] = t->grilla[k - 1][j];
+            *(*(t->grilla+k)+j) = *(*(t->grilla+k - 1)+j);
     for (j = 0; j < (int)t->columnas; j++)//este for pone en 0 a la primera fila despues de todo el movimiento para dar paso a la siguiente pieza es necesario para no tener piezas bugueadas
-        t->grilla[0][j] = 0;
+        *(*(t->grilla+0)+j) = 0;
 }
 
 int limpiar_lineas_completas(Tablero *t)//esta te recorre toda la tabla para ver si hubo mas de una fila llena y las va eliminando y contandolas eliminadas
@@ -96,20 +96,6 @@ int limpiar_lineas_completas(Tablero *t)//esta te recorre toda la tabla para ver
     return lineas;
 }
 
-void imprimir_tablero(const Tablero *t) {
-    for (size_t i = 0; i < t->filas; i++) {
-        printf("|");
-        for (size_t j = 0; j < t->columnas; j++) {
-            if (t->grilla[i][j] == 0) {
-                printf(" . ");
-            } else {
-                printf(" # ");
-            }
-        }
-        printf("|\n");
-    }
-    printf("--------------------------------\n");
-}
 
 void imprimir_tablero_pieza(const Tablero *t, const pieza *p)
 {
@@ -128,7 +114,7 @@ void imprimir_tablero_pieza(const Tablero *t, const pieza *p)
                 int rel_x = j - p->x;
 
 
-                if (p->forma[rel_y][rel_x] != 0)//Si en esa posición del molde 4x4 hay un bloque de la ficha 1
+                if (*(*(p->forma+rel_y)+rel_x) != 0)//Si en esa posición del molde 4x4 hay un bloque de la ficha 1
                 {
                     es_bloque_pieza = 1;
                 }
@@ -161,7 +147,7 @@ void fijar_pieza(Tablero *t, const pieza *p)
         {
             if (p->forma[i][j]==1)//solo cuando detecta un 1 en la pieza entra esto para q no de errores de memoria
             {
-                int fila=p->y+i;// ponemos la posicion de la fila correspondiente (p->y guarda
+                int fila=p->y+i;// eric:ponemos la posicion de la fila correspondiente (p->y guarda
                                 //la posicion del borde superior izquierdo de la matriz pieza entonces le sumamos
                                 //i para que se mueva la cantidad de espacios necesarios para equiparar su posicion en el tablero
                 int columna=p->x+j;// guardamos la posicion de la columna correspondiente

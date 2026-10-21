@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pieza.h"
-#include "Tablero.h"
+
 
 #define TAM_PIEZA 4
-// LO QUE ESTA HECHO CON INDICES DESPUES LO CAMBIO A ARIMETICA DE PUNTEROS
+// ERIC: LO QUE ESTA HECHO CON INDICES DESPUES LO CAMBIO A ARIMETICA DE PUNTEROS
 void pieza_aleatoria(pieza *p, size_t columnas_tablero)
 {
 
@@ -25,40 +25,62 @@ void obtener_matriz_pieza(int tipo, int forma[][4]) // recibe la matriz de pieza
     // creamos una matriz temporal
     int temp[4][4] = {0};
 
-    switch (tipo) {
+    switch (tipo)
+    {
         case 0: // Pieza I
-            temp[1][0] = 1; temp[1][1] = 1; temp[1][2] = 1; temp[1][3] = 1;
+            *(*(temp+1)+0)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
+            *(*(temp+1)+3)=1;
             break;
+
         case 1: // Pieza J
-            temp[0][0] = 1;
-            temp[1][0] = 1; temp[1][1] = 1; temp[1][2] = 1;
+            *(*(temp+0)+0)=1;
+            *(*(temp+1)+0)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
             break;
+
         case 2: // Pieza L
-            temp[0][2] = 1;
-            temp[1][0] = 1; temp[1][1] = 1; temp[1][2] = 1;
+            *(*(temp+0)+2)=1;
+            *(*(temp+1)+0)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
             break;
+
         case 3: // Pieza O
-            temp[0][1] = 1; temp[0][2] = 1;
-            temp[1][1] = 1; temp[1][2] = 1;
+            *(*(temp+0)+1)=1;
+            *(*(temp+0)+2)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
             break;
+
         case 4: // Pieza S
-            temp[0][1] = 1; temp[0][2] = 1;
-            temp[1][0] = 1; temp[1][1] = 1;
+            *(*(temp+0)+1)=1;
+            *(*(temp+0)+2)=1;
+            *(*(temp+1)+0)=1;
+            *(*(temp+1)+1)=1;
             break;
+
         case 5: // Pieza T
-                            temp[0][1] = 1;
-            temp[1][0] = 1; temp[1][1] = 1; temp[1][2] = 1;
+            *(*(temp+0)+1)=1;
+            *(*(temp+1)+0)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
             break;
+
         case 6: // Pieza Z
-            temp[0][0] = 1; temp[0][1] = 1;
-                            temp[1][1] = 1; temp[1][2] = 1;
+            *(*(temp+0)+0)=1;
+            *(*(temp+0)+1)=1;
+            *(*(temp+1)+1)=1;
+            *(*(temp+1)+2)=1;
             break;
     }
 
     // se copia la matriz temp a la matriz forma q es la que usamos
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            forma[i][j] = temp[i][j];
+            *(*(forma+i)+j) = *(*(temp+i)+j);
         }
     }
 }
@@ -68,24 +90,22 @@ void obtener_matriz_pieza(int tipo, int forma[][4]) // recibe la matriz de pieza
 //Pense en inicialiar primero la matriz con ceros para evitar que haya basura o algo y para despues poder imprimirla
 //Iría antes de la fc obtener la pieza
 
-void inicializar_pieza (pieza *p){
-for(int i=0;i<4;i++){
-    for(int j=0;j<TAM_PIEZA;j++){
-        p->forma[i][j]=0;
-    }
-}
-}
+
 
 void imprimir_pieza (pieza*p){
-for (int i = 0; i < TAM_PIEZA; i++) {
-    for (int j = 0; j < TAM_PIEZA; j++) {
+for (int i = 0; i < TAM_PIEZA; i++)
+{
+    printf("                     |");
+    for (int j = 0; j < TAM_PIEZA; j++)
+    {
         if (p->forma[i][j] == 1) {
             printf("#");
         } else {
             printf(".");
         }
-}
-printf("\n");
+    }
+
+printf("|\n");
 }
 }
 
@@ -123,14 +143,14 @@ void rotar(pieza *p) {
     //copia en la matriz aux la pieza
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            aux[i][j]=p->forma[i][j];
+            *(*(aux+i)+j)=*(*(p->forma+i)+j);
         }
     }
 
     //aplica rotacion en el rango 3 x 3
     for (int i = 0; i < rango; i++) {
         for (int j = 0; j < rango; j++) {
-            p->forma[i][j] = aux[rango - 1 - j][i];
+            *(*(p->forma+i)+j) = aux[rango - 1 - j][i];
         }
     }
 }

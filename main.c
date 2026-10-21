@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-
+#include <stdlib.h>
 #include <ctype.h>
 #include <conio.h>
 #include <windows.h>
@@ -90,36 +90,6 @@ int main()
         }
         /// GRAVEDAD
         contador_pasos++;
-        
-        /*if (contador_pasos >= velocidad_caida)
-        {
-            contador_pasos = 0; //reinicia el contador
-
-            piezatemp = p;
-            piezatemp.y += 1; //intenta bajar 1 casillero solo por gravedad
-
-            if (hay_colision(&mi_tablero, &piezatemp) == 0)
-            {
-                p.y += 1; // La gravedad la hace bajar
-            }
-            
-            else
-            {
-                // Si por gravedad toca el piso/pieza -> Se fija automáticamente
-                fijar_pieza(&mi_tablero, &p);
-                int lineas = limpiar_lineas_completas(&mi_tablero);
-                if (lineas > 0) puntaje += 300 * lineas;
-
-                p = piezasiguiente;
-                pieza_aleatoria(&piezasiguiente, mi_tablero.columnas);
-
-                if (hay_colision(&mi_tablero, &p) != 0) {
-                    printf("                === GAME OVER! ===\n\nPuntaje final: %d",puntaje);
-                    juegoactivo = 0;
-                }
-            }
-        }*/
-
         if (contador_pasos >= velocidad_caida)
         {
             contador_pasos = 0; //reinicia el contador
@@ -141,7 +111,7 @@ int main()
         }
 
 
-        
+
         Sleep(50); //Pequeña pausa de 50ms para mantener una tasa constante de refresco
 
     }
